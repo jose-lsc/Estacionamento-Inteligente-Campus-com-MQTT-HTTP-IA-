@@ -33,3 +33,49 @@ export function saveSpotEvent(data){
     });
 
 }
+
+export function findTurnoverReport(
+    sectorId,
+    from,
+    to
+){
+
+    return new Promise((resolve, reject) => {
+
+        const query = `
+            SELECT
+
+                sector_id,
+
+                COUNT(*) as turnover
+
+            FROM spot_events
+
+            WHERE
+                sector_id = ?
+                AND state = 'OCCUPIED'
+                AND ts BETWEEN ? AND ?
+
+            GROUP BY sector_id
+        `;
+
+        db.get(
+            query,
+            [sectorId, from, to],
+            (err, row) => {
+
+                if(err){
+
+                    reject(err);
+                    return;
+
+                }
+
+                resolve(row);
+
+            }
+        );
+
+    });
+
+}

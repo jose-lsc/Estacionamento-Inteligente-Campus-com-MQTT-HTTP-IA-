@@ -1,0 +1,26 @@
+export async function getFreeSpots(req, res){
+
+    try{
+
+        const { sectorId } = req.params;
+
+        const limit =
+        Number(req.query.limit) || 10;
+
+        const data =
+        await findFreeSpotsBySector(
+            sectorId,
+            limit
+        );
+
+        return res.json(data);
+
+    }catch(err){
+
+        return res.status(500).json({
+            error: "Erro ao buscar vagas livres"
+        });
+
+    }
+
+}
