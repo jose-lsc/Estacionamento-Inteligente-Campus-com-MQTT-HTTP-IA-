@@ -7,7 +7,21 @@ import {
 import { runMigrations } from "./database/migrations.js"; // Aqui esta importando a função de rodar o banco de dados
 import "./mqtt/subscriber.js"; //Aqui está iniciando o subscriber
 
+import express from "express";
+import cors from "cors";
+import routes from "./routes/index.js";
+
 runMigrations();
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.use(routes);
+
+export default app;
+
 for(const sector of sectors){
 
     for(let i = 1; i <= spotsPerSector; i++){
