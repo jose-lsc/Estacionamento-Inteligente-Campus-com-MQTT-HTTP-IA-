@@ -43,12 +43,15 @@ app.listen(3000, () => {
     //         createSensor(sector, spotId);
     //     }
     // }
+
+    //setFault("stuck", "A-01", "OCCUPIED");
+    //setFault("flapping", "C-01");
+
 });
 
-// setTimeout(() => {
-//     setFault("stuck", "A-01", "OCCUPIED");
-//     setFault("flapping", "C-01");
-// }, 5000);
+setTimeout(() => {
+   
+}, 5000);
 
 
 /**
